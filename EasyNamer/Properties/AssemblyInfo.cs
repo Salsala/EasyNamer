@@ -17,7 +17,7 @@ using System.Runtime.InteropServices;
 // ComVisible을 false로 설정하면 이 어셈블리의 형식이 COM 구성 요소에 
 // 표시되지 않습니다. COM에서 이 어셈블리의 형식에 액세스하려면
 // 해당 형식에 대해 ComVisible 특성을 true로 설정하세요.
-[assembly: ComVisible(false)]
+[assembly: ComVisible(true)]
 
 // 이 프로젝트가 COM에 노출되는 경우 다음 GUID는 typelib의 ID를 나타냅니다.
 [assembly: Guid("c90ae2dc-1d9f-41f8-9a3c-fc56c79b6ee0")]
@@ -31,6 +31,6 @@ using System.Runtime.InteropServices;
 //
 // 모든 값을 지정하거나 아래와 같이 '*'를 사용하여 빌드 번호 및 수정 번호를
 // 기본값으로 할 수 있습니다.
-// [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
+ [assembly: AssemblyVersion("1.5.0.0")]
+//[assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Reflection;
 
 namespace EasyNamer
 {
@@ -16,6 +17,8 @@ namespace EasyNamer
         string filePath;
         DirectoryInfo directoryInfo;
 
+
+
         public Form1()
         {
             InitializeComponent();
@@ -23,6 +26,7 @@ namespace EasyNamer
             SubtitleList.ListName = "자막 리스트";
             VideoList.fileType = new FileType(FileTypes.Video);
             SubtitleList.fileType = new FileType(FileTypes.Subtitle);
+            this.Text = this.Text + " Ver." + Assembly.GetExecutingAssembly().GetName().Version.ToString();
         }
 
         private void BtnFolderOpen_Click(object sender, EventArgs e)
