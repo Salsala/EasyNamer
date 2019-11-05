@@ -8,14 +8,14 @@ namespace EasyNamer
 {
     public class FileInformation
     {
-        public string 파일명 { get; set; }
-        public string 확장자 { get; set; }
-        public string 경로 { get; set; }
-        public FileInformation(string filename, string extension, string fullname)
+        public string FileName { get; set; }
+        public string Extension { get; set; }
+        public string Directory { get; set; }
+        public FileInformation(string filename, string extension, string directory)
         {
-            this.파일명 = filename;
-            this.확장자 = extension;
-            this.경로 = fullname;
+            this.FileName = filename;
+            this.Extension = extension;
+            this.Directory = directory;
         }
     }
 }
