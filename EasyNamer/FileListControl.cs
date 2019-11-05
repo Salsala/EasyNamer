@@ -69,7 +69,7 @@ namespace EasyNamer
 
         private void BtbIndexChange_Click(object sender, EventArgs e)
         {
-            FileListView.Visible = false;
+            //FileListView.Visible = false;
             if (FileList.Count == 0) return;
 
             var obj = (Button)sender;
@@ -82,8 +82,9 @@ namespace EasyNamer
                 case "BtnDelete": BtnDelete_Click(); break;
             }
 
+            sorted = Sorted.none;
             ListRefresh();
-            FileListView.Visible = true;
+            //FileListView.Visible = true;
         }
 
         private void BtnUp_Click()
