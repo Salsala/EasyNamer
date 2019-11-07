@@ -25,7 +25,8 @@ namespace EasyNamer
             SubtitleList.ListName = "자막 리스트";
             VideoList.fileType = new FileType(FileTypes.Video);
             SubtitleList.fileType = new FileType(FileTypes.Subtitle);
-            this.Text = this.Text + " Ver." + Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            string[] Version = Assembly.GetExecutingAssembly().GetName().Version.ToString().Split('.');
+            this.Text = this.Text + " Ver." + Version[0]+"."+Version[1];
         }
 
         private void BtnFolderOpen_Click(object sender, EventArgs e)

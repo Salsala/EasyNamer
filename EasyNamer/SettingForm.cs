@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Reflection;
 
 namespace EasyNamer
 {
@@ -15,6 +16,7 @@ namespace EasyNamer
         public SettingForm()
         {
             InitializeComponent();
+            LbVersion.Text = "Build Ver." + Assembly.GetExecutingAssembly().GetName().Version.ToString();
             TbDefaultPath.Text = Properties.Settings.Default.defaultPath;
             if (Properties.Settings.Default.isRecentPath) RdbRecent.Select();
             else RdbDefault.Select();

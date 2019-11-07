@@ -94,6 +94,7 @@ namespace EasyNamer
             // BtnFolderOpen
             // 
             this.BtnFolderOpen.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnFolderOpen.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.BtnFolderOpen.Font = new System.Drawing.Font("맑은 고딕", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.BtnFolderOpen.Location = new System.Drawing.Point(3, 2);
             this.BtnFolderOpen.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -109,6 +110,7 @@ namespace EasyNamer
             // BtnRename
             // 
             this.BtnRename.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnRename.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.BtnRename.Font = new System.Drawing.Font("맑은 고딕", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.BtnRename.Location = new System.Drawing.Point(83, 2);
             this.BtnRename.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -158,6 +160,7 @@ namespace EasyNamer
             this.tableLayoutPanel2.SetRowSpan(this.BtnSetting, 2);
             this.BtnSetting.Size = new System.Drawing.Size(38, 38);
             this.BtnSetting.TabIndex = 8;
+            this.BtnSetting.TabStop = false;
             this.BtnSetting.UseVisualStyleBackColor = true;
             this.BtnSetting.Click += new System.EventHandler(this.BtnSetting_Click);
             // 
