@@ -12,14 +12,13 @@ using System.Reflection;
 
 namespace EasyNamer
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         string filePath;
         DirectoryInfo directoryInfo;
+        bool isFirstLoad = true;
 
-
-
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
             VideoList.ListName = "동영상 리스트";
@@ -31,12 +30,22 @@ namespace EasyNamer
 
         private void BtnFolderOpen_Click(object sender, EventArgs e)
         {
+            if (isFirstLoad)
+            {
+                folderBrowserDialog1.SelectedPath = Properties.Settings.Default.defaultPath;
+                isFirstLoad = false;
+            }
+
             DialogResult dr = folderBrowserDialog1.ShowDialog();
 
             if (dr == DialogResult.Cancel) return;
 
             filePath = TbFilePath.Text = folderBrowserDialog1.SelectedPath;
-
+            if (Properties.Settings.Default.isRecentPath)
+            {
+                Properties.Settings.Default.defaultPath = filePath;
+                Properties.Settings.Default.Save();
+            }
             FileNameLoad(filePath);
         }
 
@@ -108,6 +117,14 @@ namespace EasyNamer
 
                 MessageBox.Show("파일명 변경이 완료되었습니다.");
             }
+        }
+
+        private void BtnSetting_Click(object sender, EventArgs e)
+        {
+            SettingForm settingForm = new SettingForm();
+            Point mainFormCenter = new Point(Location.X + Width / 2, Location.Y + Height / 2);
+            settingForm.Location = new Point(mainFormCenter.X - settingForm.Width / 2, mainFormCenter.Y - settingForm.Height / 2);
+            settingForm.ShowDialog();
         }
     }
 }

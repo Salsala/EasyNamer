@@ -31,14 +31,9 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FileListControl));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.FileListView = new System.Windows.Forms.DataGridView();
-            this.fileNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.extensionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.directoryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fileInformationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.BtnAdd = new System.Windows.Forms.Button();
             this.BtnDelete = new System.Windows.Forms.Button();
@@ -47,10 +42,14 @@
             this.BtnTop = new System.Windows.Forms.Button();
             this.BtnBottom = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.fileNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.extensionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.directoryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fileInformationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FileListView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fileInformationBindingSource)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fileInformationBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -127,37 +126,6 @@
             this.FileListView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.FileListView_CellDoubleClick);
             this.FileListView.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.FileListView_ColumnHeaderMouseClick);
             // 
-            // fileNameDataGridViewTextBoxColumn
-            // 
-            this.fileNameDataGridViewTextBoxColumn.DataPropertyName = "FileName";
-            this.fileNameDataGridViewTextBoxColumn.HeaderText = "파일명";
-            this.fileNameDataGridViewTextBoxColumn.MinimumWidth = 300;
-            this.fileNameDataGridViewTextBoxColumn.Name = "fileNameDataGridViewTextBoxColumn";
-            this.fileNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.fileNameDataGridViewTextBoxColumn.Width = 300;
-            // 
-            // extensionDataGridViewTextBoxColumn
-            // 
-            this.extensionDataGridViewTextBoxColumn.DataPropertyName = "Extension";
-            this.extensionDataGridViewTextBoxColumn.HeaderText = "확장자";
-            this.extensionDataGridViewTextBoxColumn.MinimumWidth = 80;
-            this.extensionDataGridViewTextBoxColumn.Name = "extensionDataGridViewTextBoxColumn";
-            this.extensionDataGridViewTextBoxColumn.ReadOnly = true;
-            this.extensionDataGridViewTextBoxColumn.Width = 80;
-            // 
-            // directoryDataGridViewTextBoxColumn
-            // 
-            this.directoryDataGridViewTextBoxColumn.DataPropertyName = "Directory";
-            this.directoryDataGridViewTextBoxColumn.HeaderText = "경로";
-            this.directoryDataGridViewTextBoxColumn.MinimumWidth = 300;
-            this.directoryDataGridViewTextBoxColumn.Name = "directoryDataGridViewTextBoxColumn";
-            this.directoryDataGridViewTextBoxColumn.ReadOnly = true;
-            this.directoryDataGridViewTextBoxColumn.Width = 300;
-            // 
-            // fileInformationBindingSource
-            // 
-            this.fileInformationBindingSource.DataSource = typeof(EasyNamer.FileInformation);
-            // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.AutoSize = true;
@@ -215,7 +183,7 @@
             // 
             // BtnUp
             // 
-            this.BtnUp.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BtnUp.BackgroundImage")));
+            this.BtnUp.BackgroundImage = global::EasyNamer.Properties.Resources.Up;
             this.BtnUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.BtnUp.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnUp.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -231,7 +199,7 @@
             // 
             // BtnDown
             // 
-            this.BtnDown.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BtnDown.BackgroundImage")));
+            this.BtnDown.BackgroundImage = global::EasyNamer.Properties.Resources.Down;
             this.BtnDown.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.BtnDown.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnDown.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -247,7 +215,7 @@
             // 
             // BtnTop
             // 
-            this.BtnTop.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BtnTop.BackgroundImage")));
+            this.BtnTop.BackgroundImage = global::EasyNamer.Properties.Resources.Top;
             this.BtnTop.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.BtnTop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnTop.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -261,7 +229,7 @@
             // 
             // BtnBottom
             // 
-            this.BtnBottom.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BtnBottom.BackgroundImage")));
+            this.BtnBottom.BackgroundImage = global::EasyNamer.Properties.Resources.Bottom;
             this.BtnBottom.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.BtnBottom.Cursor = System.Windows.Forms.Cursors.Default;
             this.BtnBottom.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -281,6 +249,37 @@
             this.openFileDialog1.Multiselect = true;
             this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
+            // fileNameDataGridViewTextBoxColumn
+            // 
+            this.fileNameDataGridViewTextBoxColumn.DataPropertyName = "FileName";
+            this.fileNameDataGridViewTextBoxColumn.HeaderText = "파일명";
+            this.fileNameDataGridViewTextBoxColumn.MinimumWidth = 300;
+            this.fileNameDataGridViewTextBoxColumn.Name = "fileNameDataGridViewTextBoxColumn";
+            this.fileNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.fileNameDataGridViewTextBoxColumn.Width = 300;
+            // 
+            // extensionDataGridViewTextBoxColumn
+            // 
+            this.extensionDataGridViewTextBoxColumn.DataPropertyName = "Extension";
+            this.extensionDataGridViewTextBoxColumn.HeaderText = "확장자";
+            this.extensionDataGridViewTextBoxColumn.MinimumWidth = 80;
+            this.extensionDataGridViewTextBoxColumn.Name = "extensionDataGridViewTextBoxColumn";
+            this.extensionDataGridViewTextBoxColumn.ReadOnly = true;
+            this.extensionDataGridViewTextBoxColumn.Width = 80;
+            // 
+            // directoryDataGridViewTextBoxColumn
+            // 
+            this.directoryDataGridViewTextBoxColumn.DataPropertyName = "Directory";
+            this.directoryDataGridViewTextBoxColumn.HeaderText = "경로";
+            this.directoryDataGridViewTextBoxColumn.MinimumWidth = 300;
+            this.directoryDataGridViewTextBoxColumn.Name = "directoryDataGridViewTextBoxColumn";
+            this.directoryDataGridViewTextBoxColumn.ReadOnly = true;
+            this.directoryDataGridViewTextBoxColumn.Width = 300;
+            // 
+            // fileInformationBindingSource
+            // 
+            this.fileInformationBindingSource.DataSource = typeof(EasyNamer.FileInformation);
+            // 
             // FileListControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -292,8 +291,8 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FileListView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fileInformationBindingSource)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.fileInformationBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
