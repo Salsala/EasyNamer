@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+﻿﻿using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
@@ -33,4 +33,4 @@ using System.Runtime.InteropServices;
 // 기본값으로 할 수 있습니다.
  [assembly: AssemblyVersion("1.6.*")]
 //[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.6.*")]
+[assembly: AssemblyFileVersion("1.6.0.0")]
