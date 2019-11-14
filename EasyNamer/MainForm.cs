@@ -26,7 +26,7 @@ namespace EasyNamer
             VideoList.fileType = new FileType(FileTypes.Video);
             SubtitleList.fileType = new FileType(FileTypes.Subtitle);
             string[] Version = Assembly.GetExecutingAssembly().GetName().Version.ToString().Split('.');
-            this.Text = this.Text + " Ver." + Version[0]+"."+Version[1];
+            this.Text = this.Text + " Ver." + Version[0]+"."+Version[1] + "." + Version[2];
         }
 
         private void BtnFolderOpen_Click(object sender, EventArgs e)

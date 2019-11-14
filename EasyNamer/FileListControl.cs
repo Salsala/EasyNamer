@@ -69,22 +69,38 @@ namespace EasyNamer
 
         private void BtbIndexChange_Click(object sender, EventArgs e)
         {
-            //FileListView.Visible = false;
             if (FileList.Count == 0) return;
 
             var obj = (Button)sender;
             switch (obj.Name)
             {
-                case "BtnTop": BtnTop_Click(); break;
-                case "BtnUp": BtnUp_Click(); break;
-                case "BtnDown": BtnDown_Click(); break;
-                case "BtnBottom": BtnBottom_Click(); break;
+                case "BtnTop": 
+                    if (!SelectedRowsCount()) return; 
+                    BtnTop_Click(); 
+                    break;
+                case "BtnUp":
+                    if (!SelectedRowsCount()) return; 
+                    BtnUp_Click(); 
+                    break;
+                case "BtnDown":
+                    if (!SelectedRowsCount()) return; 
+                    BtnDown_Click(); 
+                    break;
+                case "BtnBottom":
+                    if (!SelectedRowsCount()) return; 
+                    BtnBottom_Click(); 
+                    break;
                 case "BtnDelete": BtnDelete_Click(); break;
             }
 
             sorted = Sorted.none;
             ListRefresh();
-            //FileListView.Visible = true;
+            
+            bool SelectedRowsCount()
+            {
+                if (FileListView.SelectedRows.Count == 1) return true;
+                return false;
+            }
         }
 
         private void BtnUp_Click()
@@ -130,11 +146,12 @@ namespace EasyNamer
         }
 
         private void BtnDelete_Click()
-        {
-            int SelectedRow = FileListView.CurrentCell.RowIndex;
-
-            FileInformation tmp = FileList[SelectedRow];
-            FileList.RemoveAt(SelectedRow);
+        {            
+            foreach(DataGridViewRow item in FileListView.SelectedRows)
+            {
+                FileList.RemoveAt(item.Index);
+            }
+            FileListView.ClearSelection();
         }
 
         public void FileNameLoad(DirectoryInfo directoryInfo)
