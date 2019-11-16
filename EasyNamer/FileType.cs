@@ -29,8 +29,8 @@ namespace EasyNamer
                     filter = "동영상 파일(*.mp4, *.mkv, *.avi)|*.mp4;*.mkv;*.avi";
                     break;
                 case FileTypes.Subtitle:
-                    ExtensionList = new string[] { ".smi", ".ass", ".str" };
-                    filter = "자막 파일(*.smi, *.ass, *.str)|*.smi;*.ass;*.str";
+                    ExtensionList = new string[] { ".smi", ".ass", ".srt" };
+                    filter = "자막 파일(*.smi, *.ass, *.srt)|*.smi;*.ass;*.srt";
                     break;
             }
         }
