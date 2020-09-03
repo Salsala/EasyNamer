@@ -12,12 +12,6 @@ using System.Diagnostics;
 
 namespace EasyNamer
 {
-    public enum Sorted
-    {
-        none,
-        Ascending,
-        Descending
-    }
 
     public partial class FileListControl : UserControl
     {

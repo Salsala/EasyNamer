@@ -1,6 +1,6 @@
 ﻿namespace EasyNamer
 {
-    partial class FileListControl
+    partial class FileListControl2
     {
         /// <summary> 
         /// 필수 디자이너 변수입니다.
@@ -13,8 +13,7 @@
         /// <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
-            {
+            if (disposing && (components != null)) {
                 components.Dispose();
             }
             base.Dispose(disposing);
@@ -29,12 +28,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.columnHeaderFileName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderExtension = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderDirectory = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
-            this.FileListView = new System.Windows.Forms.DataGridView();
-            this.fileInformationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.BtnAdd = new System.Windows.Forms.Button();
             this.BtnDelete = new System.Windows.Forms.Button();
@@ -42,23 +40,35 @@
             this.BtnDown = new System.Windows.Forms.Button();
             this.BtnTop = new System.Windows.Forms.Button();
             this.BtnBottom = new System.Windows.Forms.Button();
+            this.fileNameListView = new System.Windows.Forms.ListView();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.fileNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.extensionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.directoryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fileInformationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.FileListView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fileInformationBindingSource)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fileInformationBindingSource)).BeginInit();
             this.SuspendLayout();
+            // 
+            // columnHeaderFileName
+            // 
+            this.columnHeaderFileName.Text = "파일명";
+            this.columnHeaderFileName.Width = 200;
+            // 
+            // columnHeaderExtension
+            // 
+            this.columnHeaderExtension.Text = "확장자";
+            // 
+            // columnHeaderDirectory
+            // 
+            this.columnHeaderDirectory.Text = "경로";
+            this.columnHeaderDirectory.Width = 300;
             // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.FileListView, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.fileNameListView, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -81,54 +91,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "List";
             this.label1.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-            // 
-            // FileListView
-            // 
-            this.FileListView.AllowUserToAddRows = false;
-            this.FileListView.AllowUserToResizeRows = false;
-            this.FileListView.AutoGenerateColumns = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("맑은 고딕", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.FileListView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.FileListView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.FileListView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.fileNameDataGridViewTextBoxColumn,
-            this.extensionDataGridViewTextBoxColumn,
-            this.directoryDataGridViewTextBoxColumn});
-            this.FileListView.DataSource = this.fileInformationBindingSource;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("맑은 고딕", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.FileListView.DefaultCellStyle = dataGridViewCellStyle2;
-            this.FileListView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.FileListView.Location = new System.Drawing.Point(3, 26);
-            this.FileListView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.FileListView.Name = "FileListView";
-            this.FileListView.ReadOnly = true;
-            this.FileListView.RowHeadersWidth = 51;
-            this.FileListView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.FileListView.RowTemplate.Height = 27;
-            this.FileListView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.FileListView.Size = new System.Drawing.Size(709, 396);
-            this.FileListView.TabIndex = 1;
-            this.FileListView.TabStop = false;
-            this.FileListView.VirtualMode = true;
-            this.FileListView.DataSourceChanged += new System.EventHandler(this.FileListView_DataSourceChanged);
-            this.FileListView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.FileListView_CellDoubleClick);
-            this.FileListView.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.FileListView_ColumnHeaderMouseClick);
-            // 
-            // fileInformationBindingSource
-            // 
-            this.fileInformationBindingSource.DataSource = typeof(EasyNamer.FileInformation);
             // 
             // tableLayoutPanel2
             // 
@@ -247,61 +209,56 @@
             this.BtnBottom.UseVisualStyleBackColor = true;
             this.BtnBottom.Click += new System.EventHandler(this.BtbIndexChange_Click);
             // 
+            // fileNameListView
+            // 
+            this.fileNameListView.AllowDrop = true;
+            this.fileNameListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeaderFileName,
+            this.columnHeaderExtension,
+            this.columnHeaderDirectory});
+            this.fileNameListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fileNameListView.FullRowSelect = true;
+            this.fileNameListView.HideSelection = false;
+            this.fileNameListView.Location = new System.Drawing.Point(3, 27);
+            this.fileNameListView.Name = "fileNameListView";
+            this.fileNameListView.Size = new System.Drawing.Size(709, 394);
+            this.fileNameListView.TabIndex = 3;
+            this.fileNameListView.UseCompatibleStateImageBehavior = false;
+            this.fileNameListView.View = System.Windows.Forms.View.Details;
+            this.fileNameListView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.fileNameListView_ColumnClick);
+            this.fileNameListView.DragDrop += new System.Windows.Forms.DragEventHandler(this.fileNameListView_DragDrop);
+            this.fileNameListView.DragEnter += new System.Windows.Forms.DragEventHandler(this.fileNameListView_DragEnter);
+            this.fileNameListView.DoubleClick += new System.EventHandler(this.fileNameListView_DoubleClick);
+            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.Multiselect = true;
             this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
-            // fileNameDataGridViewTextBoxColumn
+            // fileInformationBindingSource
             // 
-            this.fileNameDataGridViewTextBoxColumn.DataPropertyName = "FileName";
-            this.fileNameDataGridViewTextBoxColumn.HeaderText = "파일명";
-            this.fileNameDataGridViewTextBoxColumn.MinimumWidth = 200;
-            this.fileNameDataGridViewTextBoxColumn.Name = "fileNameDataGridViewTextBoxColumn";
-            this.fileNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.fileNameDataGridViewTextBoxColumn.Width = 200;
+            this.fileInformationBindingSource.DataSource = typeof(EasyNamer.FileInformation);
             // 
-            // extensionDataGridViewTextBoxColumn
-            // 
-            this.extensionDataGridViewTextBoxColumn.DataPropertyName = "Extension";
-            this.extensionDataGridViewTextBoxColumn.HeaderText = "확장자";
-            this.extensionDataGridViewTextBoxColumn.MinimumWidth = 80;
-            this.extensionDataGridViewTextBoxColumn.Name = "extensionDataGridViewTextBoxColumn";
-            this.extensionDataGridViewTextBoxColumn.ReadOnly = true;
-            this.extensionDataGridViewTextBoxColumn.Width = 80;
-            // 
-            // directoryDataGridViewTextBoxColumn
-            // 
-            this.directoryDataGridViewTextBoxColumn.DataPropertyName = "Directory";
-            this.directoryDataGridViewTextBoxColumn.HeaderText = "경로";
-            this.directoryDataGridViewTextBoxColumn.MinimumWidth = 300;
-            this.directoryDataGridViewTextBoxColumn.Name = "directoryDataGridViewTextBoxColumn";
-            this.directoryDataGridViewTextBoxColumn.ReadOnly = true;
-            this.directoryDataGridViewTextBoxColumn.Width = 300;
-            // 
-            // FileListControl
+            // FileListControl2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Name = "FileListControl";
+            this.Name = "FileListControl2";
             this.Size = new System.Drawing.Size(715, 459);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.FileListView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fileInformationBindingSource)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.fileInformationBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label label1;
-        public System.Windows.Forms.DataGridView FileListView;
         private System.Windows.Forms.BindingSource fileInformationBindingSource;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Button BtnAdd;
@@ -311,8 +268,9 @@
         private System.Windows.Forms.Button BtnTop;
         private System.Windows.Forms.Button BtnBottom;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fileNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn extensionDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn directoryDataGridViewTextBoxColumn;
+        private System.Windows.Forms.ColumnHeader columnHeaderFileName;
+        private System.Windows.Forms.ColumnHeader columnHeaderExtension;
+        private System.Windows.Forms.ColumnHeader columnHeaderDirectory;
+        private System.Windows.Forms.ListView fileNameListView;
     }
 }

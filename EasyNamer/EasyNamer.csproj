@@ -47,7 +47,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enum.cs" />
     <Compile Include="FileInformation.cs" />
+    <Compile Include="FileListControl2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FileListControl2.Designer.cs">
+      <DependentUpon>FileListControl2.cs</DependentUpon>
+    </Compile>
     <Compile Include="FileListControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -69,6 +76,9 @@
     <Compile Include="SettingForm.Designer.cs">
       <DependentUpon>SettingForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="FileListControl2.resx">
+      <DependentUpon>FileListControl2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FileListControl.resx">
       <DependentUpon>FileListControl.cs</DependentUpon>
     </EmbeddedResource>

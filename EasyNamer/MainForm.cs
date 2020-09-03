@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Reflection;
+using System.Windows.Forms;
 
 namespace EasyNamer
 {
@@ -25,8 +26,10 @@ namespace EasyNamer
             SubtitleList.ListName = "자막 리스트";
             VideoList.fileType = new FileType(FileTypes.Video);
             SubtitleList.fileType = new FileType(FileTypes.Subtitle);
+            filePath = TbFilePath.Text = Properties.Settings.Default.defaultPath;
             string[] Version = Assembly.GetExecutingAssembly().GetName().Version.ToString().Split('.');
             this.Text = this.Text + " Ver." + Version[0]+"."+Version[1] + "." + Version[2];
+            FileNameLoad(filePath);
         }
 
         private void BtnFolderOpen_Click(object sender, EventArgs e)
@@ -53,12 +56,17 @@ namespace EasyNamer
         private void FileNameLoad(string filePath)
         {
             directoryInfo = new DirectoryInfo(filePath);
+
             List<FileInformation> videoDeleteList = new List<FileInformation>();
             List<FileInformation> subtitleDeletList = new List<FileInformation>();
-
-            VideoList.FileNameLoad(directoryInfo);
-            SubtitleList.FileNameLoad(directoryInfo);
-
+            try {
+                VideoList.FileNameLoad(directoryInfo);
+                SubtitleList.FileNameLoad(directoryInfo);
+            } catch {
+                MessageBox.Show("존재하지 않는 폴더입니다.\n" +
+                                "경로를 다시 확인하세요.");
+                return;
+            }
             foreach (var videoname in VideoList.FileList)
             {
                 foreach (var subtitlename in SubtitleList.FileList)
@@ -102,7 +110,7 @@ namespace EasyNamer
                 {
                     FileInformation video = VideoList.FileList[i];
                     FileInformation subtitle = SubtitleList.FileList[i];
-                    string newfullname = filePath + "\\" + video.FileName + subtitle.Extension;
+                    string newfullname = filePath??new FileInfo(subtitle.Directory).DirectoryName + "\\" + video.FileName + subtitle.Extension;
                     fileList.Add(new string[] { subtitle.Directory, newfullname });
                     subtitle.FileName = video.FileName;
                     subtitle.Directory = newfullname;
@@ -126,6 +134,19 @@ namespace EasyNamer
             Point mainFormCenter = new Point(Location.X + Width / 2, Location.Y + Height / 2);
             settingForm.Location = new Point(mainFormCenter.X - settingForm.Width / 2, mainFormCenter.Y - settingForm.Height / 2);
             settingForm.ShowDialog();
+        }
+
+        private void TbFilePath_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            if (e.KeyChar == (char)Keys.Enter) {
+                filePath = tb.Text;
+                if (Properties.Settings.Default.isRecentPath) {
+                    Properties.Settings.Default.defaultPath = filePath;
+                    Properties.Settings.Default.Save();
+                }
+                FileNameLoad(filePath);
+            }
         }
     }
 }
