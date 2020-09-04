@@ -1,12 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
@@ -110,7 +104,7 @@ namespace EasyNamer
                 {
                     FileInformation video = VideoList.FileList[i];
                     FileInformation subtitle = SubtitleList.FileList[i];
-                    string newfullname = filePath??new FileInfo(subtitle.Directory).DirectoryName + "\\" + video.FileName + subtitle.Extension;
+                    string newfullname = $@"{filePath??new FileInfo(subtitle.Directory).DirectoryName}\{video.FileName}{subtitle.Extension}";
                     fileList.Add(new string[] { subtitle.Directory, newfullname });
                     subtitle.FileName = video.FileName;
                     subtitle.Directory = newfullname;

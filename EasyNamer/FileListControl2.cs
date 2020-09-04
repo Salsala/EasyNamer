@@ -205,7 +205,6 @@ namespace EasyNamer
 
         private void fileNameListView_ColumnClick(object sender, ColumnClickEventArgs e)
         {
-            //if (e.Column != 0) return;
             List<FileInformation> tmpList = new List<FileInformation>();
 
             foreach (var item in FileList) {
@@ -252,8 +251,6 @@ namespace EasyNamer
 
         private void fileNameListView_DragDrop(object sender, DragEventArgs e)
         {
-
-            int a = 1;
             string[] itmes = (string[])e.Data.GetData(DataFormats.FileDrop);
 
             foreach (string item in itmes) {

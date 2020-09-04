@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace EasyNamer
+﻿namespace EasyNamer
 {
     public class FileInformation
     {
@@ -13,9 +7,9 @@ namespace EasyNamer
         public string Directory { get; set; }
         public FileInformation(string filename, string extension, string directory)
         {
-            this.FileName = filename;
-            this.Extension = extension;
-            this.Directory = directory;
+            FileName = filename;
+            Extension = extension;
+            Directory = directory;
         }
     }
 }
