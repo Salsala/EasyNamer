@@ -104,6 +104,8 @@ namespace EasyNamer
                 {
                     FileInformation video = VideoList.FileList[i];
                     FileInformation subtitle = SubtitleList.FileList[i];
+                    filePath = new FileInfo(video.Directory).DirectoryName;
+                    TbFilePath.Text = TbFilePath.Text != filePath ? filePath : TbFilePath.Text;
                     string newfullname = $@"{filePath??new FileInfo(subtitle.Directory).DirectoryName}\{video.FileName}{subtitle.Extension}";
                     fileList.Add(new string[] { subtitle.Directory, newfullname });
                     subtitle.FileName = video.FileName;
