@@ -52,12 +52,6 @@
   <ItemGroup>
     <Compile Include="Enum.cs" />
     <Compile Include="FileInformation.cs" />
-    <Compile Include="FileListControl2.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FileListControl2.Designer.cs">
-      <DependentUpon>FileListControl2.cs</DependentUpon>
-    </Compile>
     <Compile Include="FileListControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -65,6 +59,21 @@
       <DependentUpon>FileListControl.cs</DependentUpon>
     </Compile>
     <Compile Include="FileType.cs" />
+    <Compile Include="Properties\Language.ja-JP.Designer.cs">
+      <DependentUpon>Language.ja-JP.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Properties\Language.en-US.Designer.cs">
+      <DependentUpon>Language.en-US.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Properties\Language.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Language.resx</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -79,11 +88,21 @@
     <Compile Include="SettingForm.Designer.cs">
       <DependentUpon>SettingForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="FileListControl2.resx">
-      <DependentUpon>FileListControl2.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FileListControl.resx">
       <DependentUpon>FileListControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Language.ja-JP.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Language.ja-JP.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Language.en-US.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Language.en-US.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Language.ko-KR.resx" />
+    <EmbeddedResource Include="Properties\Language.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Language.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -101,7 +120,6 @@
     <EmbeddedResource Include="SettingForm.resx">
       <DependentUpon>SettingForm.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Properties\DataSources\FileInformation.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

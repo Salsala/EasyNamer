@@ -117,10 +117,57 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="openFileDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>231, 17</value>
-  </metadata>
-  <metadata name="fileInformationBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>22, 19</value>
-  </metadata>
+  <data name="TXT_Cancel" xml:space="preserve">
+    <value>취소</value>
+  </data>
+  <data name="TXT_Default" xml:space="preserve">
+    <value>지정된 폴더</value>
+  </data>
+  <data name="TXT_Extension" xml:space="preserve">
+    <value>확장자</value>
+  </data>
+  <data name="TXT_FileLoad" xml:space="preserve">
+    <value>가져오기</value>
+  </data>
+  <data name="TXT_FileName" xml:space="preserve">
+    <value>파일명</value>
+  </data>
+  <data name="TXT_Find" xml:space="preserve">
+    <value>찾아보기</value>
+  </data>
+  <data name="TXT_Language" xml:space="preserve">
+    <value>언어</value>
+  </data>
+  <data name="TXT_Message1" xml:space="preserve">
+    <value>파일명 변경이 완료되었습니다.</value>
+  </data>
+  <data name="TXT_Message2" xml:space="preserve">
+    <value>존재하지 않는 폴더입니다.
+경로를 다시 확인하세요.</value>
+  </data>
+  <data name="TXT_Message3" xml:space="preserve">
+    <value>동영상과 자막의 개수가 다릅니다.
+동영상 리스트와 자막 리스트를 확인하세요.</value>
+  </data>
+  <data name="TXT_OK" xml:space="preserve">
+    <value>확인</value>
+  </data>
+  <data name="TXT_Option" xml:space="preserve">
+    <value>설정</value>
+  </data>
+  <data name="TXT_Path" xml:space="preserve">
+    <value>경로</value>
+  </data>
+  <data name="TXT_Recent" xml:space="preserve">
+    <value>최근 폴더</value>
+  </data>
+  <data name="TXT_Rename" xml:space="preserve">
+    <value>변경</value>
+  </data>
+  <data name="TXT_SubtitleList" xml:space="preserve">
+    <value>자막 리스트</value>
+  </data>
+  <data name="TXT_VideoList" xml:space="preserve">
+    <value>동영상 리스트</value>
+  </data>
 </root>

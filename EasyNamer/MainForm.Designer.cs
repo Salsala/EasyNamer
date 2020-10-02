@@ -32,6 +32,8 @@ namespace EasyNamer
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.VideoList = new EasyNamer.FileListControl();
+            this.SubtitleList = new EasyNamer.FileListControl();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.BtnFolderOpen = new System.Windows.Forms.Button();
             this.BtnRename = new System.Windows.Forms.Button();
@@ -39,8 +41,6 @@ namespace EasyNamer
             this.TbFilePath = new System.Windows.Forms.TextBox();
             this.BtnSetting = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.VideoList = new EasyNamer.FileListControl2();
-            this.SubtitleList = new EasyNamer.FileListControl2();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -67,6 +67,30 @@ namespace EasyNamer
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(884, 511);
             this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // VideoList
+            // 
+            this.VideoList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.VideoList.ListName = "동영상 리스트";
+            this.VideoList.Location = new System.Drawing.Point(18, 56);
+            this.VideoList.Margin = new System.Windows.Forms.Padding(0);
+            this.VideoList.Name = "VideoList";
+            this.VideoList.Size = new System.Drawing.Size(419, 439);
+            this.VideoList.sorted = EasyNamer.Sorted.none;
+            this.VideoList.TabIndex = 3;
+            this.VideoList.TabStop = false;
+            // 
+            // SubtitleList
+            // 
+            this.SubtitleList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SubtitleList.ListName = "자막 리스트";
+            this.SubtitleList.Location = new System.Drawing.Point(446, 56);
+            this.SubtitleList.Margin = new System.Windows.Forms.Padding(0);
+            this.SubtitleList.Name = "SubtitleList";
+            this.SubtitleList.Size = new System.Drawing.Size(419, 439);
+            this.SubtitleList.sorted = EasyNamer.Sorted.none;
+            this.SubtitleList.TabIndex = 4;
+            this.SubtitleList.TabStop = false;
             // 
             // tableLayoutPanel2
             // 
@@ -96,7 +120,7 @@ namespace EasyNamer
             // 
             this.BtnFolderOpen.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnFolderOpen.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.BtnFolderOpen.Font = new System.Drawing.Font("맑은 고딕", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.BtnFolderOpen.Font = new System.Drawing.Font("맑은 고딕", 10.2F, System.Drawing.FontStyle.Bold);
             this.BtnFolderOpen.Location = new System.Drawing.Point(3, 2);
             this.BtnFolderOpen.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.BtnFolderOpen.Name = "BtnFolderOpen";
@@ -112,7 +136,7 @@ namespace EasyNamer
             // 
             this.BtnRename.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnRename.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.BtnRename.Font = new System.Drawing.Font("맑은 고딕", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.BtnRename.Font = new System.Drawing.Font("맑은 고딕", 10.2F, System.Drawing.FontStyle.Bold);
             this.BtnRename.Location = new System.Drawing.Point(83, 2);
             this.BtnRename.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.BtnRename.Name = "BtnRename";
@@ -128,7 +152,7 @@ namespace EasyNamer
             // 
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("맑은 고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label1.Font = new System.Drawing.Font("맑은 고딕", 9.75F);
             this.label1.Location = new System.Drawing.Point(163, 10);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(44, 30);
@@ -140,7 +164,7 @@ namespace EasyNamer
             // 
             this.TbFilePath.BackColor = System.Drawing.Color.White;
             this.TbFilePath.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TbFilePath.Font = new System.Drawing.Font("맑은 고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.TbFilePath.Font = new System.Drawing.Font("맑은 고딕", 9.75F);
             this.TbFilePath.Location = new System.Drawing.Point(213, 13);
             this.TbFilePath.Name = "TbFilePath";
             this.TbFilePath.Size = new System.Drawing.Size(591, 25);
@@ -154,7 +178,7 @@ namespace EasyNamer
             this.BtnSetting.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.BtnSetting.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnSetting.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.BtnSetting.Font = new System.Drawing.Font("맑은 고딕", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.BtnSetting.Font = new System.Drawing.Font("맑은 고딕", 11.25F, System.Drawing.FontStyle.Bold);
             this.BtnSetting.Location = new System.Drawing.Point(808, 1);
             this.BtnSetting.Margin = new System.Windows.Forms.Padding(1);
             this.BtnSetting.Name = "BtnSetting";
@@ -169,28 +193,6 @@ namespace EasyNamer
             // 
             this.folderBrowserDialog1.SelectedPath = "D:\\비전팀\\상진\\새 폴더 (2)";
             this.folderBrowserDialog1.ShowNewFolderButton = false;
-            // 
-            // VideoList
-            // 
-            this.VideoList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.VideoList.Location = new System.Drawing.Point(18, 56);
-            this.VideoList.Margin = new System.Windows.Forms.Padding(0);
-            this.VideoList.Name = "VideoList";
-            this.VideoList.Size = new System.Drawing.Size(419, 439);
-            this.VideoList.sorted = EasyNamer.Sorted.none;
-            this.VideoList.TabIndex = 3;
-            this.VideoList.TabStop = false;
-            // 
-            // SubtitleList
-            // 
-            this.SubtitleList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SubtitleList.Location = new System.Drawing.Point(446, 56);
-            this.SubtitleList.Margin = new System.Windows.Forms.Padding(0);
-            this.SubtitleList.Name = "SubtitleList";
-            this.SubtitleList.Size = new System.Drawing.Size(419, 439);
-            this.SubtitleList.sorted = EasyNamer.Sorted.none;
-            this.SubtitleList.TabIndex = 4;
-            this.SubtitleList.TabStop = false;
             // 
             // MainForm
             // 
@@ -214,8 +216,8 @@ namespace EasyNamer
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Button BtnFolderOpen;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
-        private FileListControl2 VideoList;
-        private FileListControl2 SubtitleList;
+        private FileListControl VideoList;
+        private FileListControl SubtitleList;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Button BtnRename;
         private System.Windows.Forms.Label label1;
