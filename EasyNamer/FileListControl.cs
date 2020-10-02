@@ -53,10 +53,10 @@ namespace EasyNamer
         public FileListControl()
         {
             InitializeComponent();
-            chFN ="파일명";
+            chFN = "파일명";
             sorted = Sorted.none;
         }
-        
+
         public void ListRefresh()
         {
             fileNameListView.Items.Clear();
@@ -246,14 +246,7 @@ namespace EasyNamer
         private void fileNameListView_DoubleClick(object sender, EventArgs e)
         {
             int index = fileNameListView.SelectedItems[0].Index;
-            switch (fileType.fileType) {
-                case FileTypes.Video:
-                    Process.Start("PotPlayer.exe", FileList[index].Directory);
-                    break;
-                case FileTypes.Subtitle:
-                    Process.Start("notepad.exe", FileList[index].Directory);
-                    break;
-            }
+            Process.Start(FileList[index].Directory);
         }
 
         private void fileNameListView_DragEnter(object sender, DragEventArgs e)
@@ -279,7 +272,7 @@ namespace EasyNamer
                 }
                 if (equalCount == 0) FileList.Add(file);
             }
-            
+
             sorted = Sorted.none;
             ListRefresh();
         }
