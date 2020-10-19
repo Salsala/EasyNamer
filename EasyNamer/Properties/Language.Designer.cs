@@ -61,6 +61,15 @@ namespace EasyNamer.Properties {
         }
         
         /// <summary>
+        ///   Auto과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string TXT_Auto {
+            get {
+                return ResourceManager.GetString("TXT_Auto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Cancel과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string TXT_Cancel {

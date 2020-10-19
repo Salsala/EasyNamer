@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="TXT_Auto" xml:space="preserve">
+    <value>自動</value>
+  </data>
   <data name="TXT_Cancel" xml:space="preserve">
     <value>キャンセル</value>
   </data>

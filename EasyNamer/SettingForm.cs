@@ -21,10 +21,21 @@ namespace EasyNamer
             InitializeComponent();
             LanguageChange();
             LbVersion.Text = "Build Ver." + Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            SettingLoad();
+        }
+
+        private void SettingLoad()
+        {
             TbDefaultPath.Text = Settings.Default.defaultPath;
             if (Settings.Default.isRecentPath) RdbRecent.Select();
             else RdbDefault.Select();
-            cb_Language.Text = Settings.Default.Language;
+            switch (Settings.Default.Language) {
+                case "한국어": cb_Language.SelectedIndex=3; break;
+                case "日本語": cb_Language.SelectedIndex=2; break;
+                case "English": cb_Language.SelectedIndex=1; break;
+                case "Auto":
+                default: cb_Language.SelectedIndex = 0; break;
+            }
         }
 
         private void LanguageChange()
@@ -36,6 +47,7 @@ namespace EasyNamer
             BtnOk.Text = Language.TXT_OK;
             BtnCancel.Text = Language.TXT_Cancel;
             label1.Text = Language.TXT_Language;
+            cb_Language.Items[0] = Language.TXT_Auto;
 
         }
 
@@ -57,6 +69,15 @@ namespace EasyNamer
                 Settings.Default.defaultPath = TbDefaultPath.Text;
             }
             else if (RdbRecent.Checked) Settings.Default.isRecentPath = true;
+            switch (cb_Language.SelectedIndex) {
+                case 3: Settings.Default.Language = "한국어"; break;
+                case 2: Settings.Default.Language = "日本語"; break;
+                case 1: Settings.Default.Language = "English"; break;
+                case 0:
+                default: Settings.Default.Language = "Auto"; break;
+            }
+
+
             Settings.Default.Language = cb_Language.Text;
 
             Settings.Default.Save();
