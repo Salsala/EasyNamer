@@ -24,7 +24,7 @@ namespace EasyNamer
         public Sorted sorted { get => sorted_; set => HeaderTextUpdate(value); }
         private string chFN;
 
-        public void LanguageChanged(object sender, EventArgs e)
+        public void ApplyLanguage()
         {
             chFN = Language.TXT_FileName;
             columnHeaderExtension.Text = Language.TXT_Extension;

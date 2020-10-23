@@ -35,9 +35,9 @@ namespace EasyNamer
             this.VideoList = new EasyNamer.FileListControl();
             this.SubtitleList = new EasyNamer.FileListControl();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.BtnFolderOpen = new System.Windows.Forms.Button();
+            this.BtnFileLoad = new System.Windows.Forms.Button();
             this.BtnRename = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.LbPath = new System.Windows.Forms.Label();
             this.TbFilePath = new System.Windows.Forms.TextBox();
             this.BtnSetting = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
@@ -101,9 +101,9 @@ namespace EasyNamer
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel2.Controls.Add(this.BtnFolderOpen, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.BtnFileLoad, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.BtnRename, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.label1, 2, 1);
+            this.tableLayoutPanel2.Controls.Add(this.LbPath, 2, 1);
             this.tableLayoutPanel2.Controls.Add(this.TbFilePath, 3, 1);
             this.tableLayoutPanel2.Controls.Add(this.BtnSetting, 4, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -116,21 +116,21 @@ namespace EasyNamer
             this.tableLayoutPanel2.Size = new System.Drawing.Size(847, 40);
             this.tableLayoutPanel2.TabIndex = 6;
             // 
-            // BtnFolderOpen
+            // BtnFileLoad
             // 
-            this.BtnFolderOpen.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnFolderOpen.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.BtnFolderOpen.Font = new System.Drawing.Font("맑은 고딕", 10.2F, System.Drawing.FontStyle.Bold);
-            this.BtnFolderOpen.Location = new System.Drawing.Point(3, 2);
-            this.BtnFolderOpen.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.BtnFolderOpen.Name = "BtnFolderOpen";
-            this.tableLayoutPanel2.SetRowSpan(this.BtnFolderOpen, 2);
-            this.BtnFolderOpen.Size = new System.Drawing.Size(74, 36);
-            this.BtnFolderOpen.TabIndex = 2;
-            this.BtnFolderOpen.TabStop = false;
-            this.BtnFolderOpen.Text = "가져오기";
-            this.BtnFolderOpen.UseVisualStyleBackColor = true;
-            this.BtnFolderOpen.Click += new System.EventHandler(this.BtnFolderOpen_Click);
+            this.BtnFileLoad.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnFileLoad.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.BtnFileLoad.Font = new System.Drawing.Font("맑은 고딕", 10.2F, System.Drawing.FontStyle.Bold);
+            this.BtnFileLoad.Location = new System.Drawing.Point(3, 2);
+            this.BtnFileLoad.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.BtnFileLoad.Name = "BtnFileLoad";
+            this.tableLayoutPanel2.SetRowSpan(this.BtnFileLoad, 2);
+            this.BtnFileLoad.Size = new System.Drawing.Size(74, 36);
+            this.BtnFileLoad.TabIndex = 2;
+            this.BtnFileLoad.TabStop = false;
+            this.BtnFileLoad.Text = "가져오기";
+            this.BtnFileLoad.UseVisualStyleBackColor = true;
+            this.BtnFileLoad.Click += new System.EventHandler(this.BtnFolderOpen_Click);
             // 
             // BtnRename
             // 
@@ -148,17 +148,17 @@ namespace EasyNamer
             this.BtnRename.UseVisualStyleBackColor = true;
             this.BtnRename.Click += new System.EventHandler(this.BtnRename_Click);
             // 
-            // label1
+            // LbPath
             // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("맑은 고딕", 9.75F);
-            this.label1.Location = new System.Drawing.Point(163, 10);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(44, 30);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "경로";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.LbPath.AutoSize = true;
+            this.LbPath.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LbPath.Font = new System.Drawing.Font("맑은 고딕", 9.75F);
+            this.LbPath.Location = new System.Drawing.Point(163, 10);
+            this.LbPath.Name = "LbPath";
+            this.LbPath.Size = new System.Drawing.Size(44, 30);
+            this.LbPath.TabIndex = 6;
+            this.LbPath.Text = "경로";
+            this.LbPath.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // TbFilePath
             // 
@@ -214,13 +214,13 @@ namespace EasyNamer
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Button BtnFolderOpen;
+        private System.Windows.Forms.Button BtnFileLoad;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private FileListControl VideoList;
         private FileListControl SubtitleList;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Button BtnRename;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label LbPath;
         private System.Windows.Forms.TextBox TbFilePath;
         private System.Windows.Forms.Button BtnSetting;
     }

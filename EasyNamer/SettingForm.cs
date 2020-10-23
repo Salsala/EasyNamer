@@ -19,7 +19,7 @@ namespace EasyNamer
         public SettingForm()
         {
             InitializeComponent();
-            LanguageChange();
+            cb_Language.Items[0] = Language.TXT_Auto;
             LbVersion.Text = "Build Ver." + Assembly.GetExecutingAssembly().GetName().Version.ToString();
             SettingLoad();
         }
@@ -30,25 +30,12 @@ namespace EasyNamer
             if (Settings.Default.isRecentPath) RdbRecent.Select();
             else RdbDefault.Select();
             switch (Settings.Default.Language) {
-                case "한국어": cb_Language.SelectedIndex=3; break;
-                case "日本語": cb_Language.SelectedIndex=2; break;
-                case "English": cb_Language.SelectedIndex=1; break;
+                case "ko-KR": cb_Language.SelectedIndex=3; break;
+                case "ja-JP": cb_Language.SelectedIndex=2; break;
+                case "en-US": cb_Language.SelectedIndex=1; break;
                 case "Auto":
                 default: cb_Language.SelectedIndex = 0; break;
             }
-        }
-
-        private void LanguageChange()
-        {
-            groupBox1.Text = Language.TXT_Option;
-            RdbDefault.Text = Language.TXT_Default;
-            RdbRecent.Text = Language.TXT_Recent;
-            BtnPath.Text = Language.TXT_Find;
-            BtnOk.Text = Language.TXT_OK;
-            BtnCancel.Text = Language.TXT_Cancel;
-            label1.Text = Language.TXT_Language;
-            cb_Language.Items[0] = Language.TXT_Auto;
-
         }
 
         private void BtnPath_Click(object sender, EventArgs e)
@@ -70,16 +57,13 @@ namespace EasyNamer
             }
             else if (RdbRecent.Checked) Settings.Default.isRecentPath = true;
             switch (cb_Language.SelectedIndex) {
-                case 3: Settings.Default.Language = "한국어"; break;
-                case 2: Settings.Default.Language = "日本語"; break;
-                case 1: Settings.Default.Language = "English"; break;
+                case 3: Settings.Default.Language = "ko-KR"; break;
+                case 2: Settings.Default.Language = "ja-JP"; break;
+                case 1: Settings.Default.Language = "en-US"; break;
                 case 0:
                 default: Settings.Default.Language = "Auto"; break;
             }
-
-
-            Settings.Default.Language = cb_Language.Text;
-
+            
             Settings.Default.Save();
 
             settingChanged.Invoke(null, EventArgs.Empty);
@@ -97,7 +81,7 @@ namespace EasyNamer
             if (RdbRecent.Checked)
             {
                 TbDefaultPath.Enabled = false;
-                BtnPath.Enabled = false;
+                BtnFind.Enabled = false;
             }
         }
 
@@ -106,7 +90,7 @@ namespace EasyNamer
             if (RdbDefault.Checked)
             {
                 TbDefaultPath.Enabled = true;
-                BtnPath.Enabled = true;
+                BtnFind.Enabled = true;
             }
         }
     }

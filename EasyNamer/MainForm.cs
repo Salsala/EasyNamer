@@ -14,7 +14,7 @@ namespace EasyNamer
         string filePath;
         DirectoryInfo directoryInfo;
         bool isFirstLoad = true;
-        List<string> Messages=new List<string>();
+        List<string> Messages = new List<string>();
 
         EventHandler languageChanged;
 
@@ -23,8 +23,6 @@ namespace EasyNamer
             InitializeComponent();
 
             languageChanged += LanguageChanged;
-            languageChanged += VideoList.LanguageChanged;
-            languageChanged += SubtitleList.LanguageChanged;
 
             SettingChanged(null, EventArgs.Empty);
 
@@ -38,15 +36,27 @@ namespace EasyNamer
 
         private void LanguageChanged(object sender, EventArgs e)
         {
+            ApplyControlCulture((Control)sender, Language.Culture);
             Messages.Clear();
-            BtnFolderOpen.Text = Language.TXT_FileLoad;
-            BtnRename.Text = Language.TXT_Rename;
-            label1.Text = Language.TXT_Path;
-            VideoList.ListName = Language.TXT_VideoList;
-            SubtitleList.ListName = Language.TXT_SubtitleList;
-            Messages.Add(Language.TXT_Message1);
-            Messages.Add(Language.TXT_Message2);
-            Messages.Add(Language.TXT_Message3);
+            for (int i = 0; i < 3; i++) {
+                Messages.Add(Language.ResourceManager.GetString($"TXT_Message{i + 1}", Language.Culture));
+            }
+        }
+
+        private void ApplyControlCulture(Control ctrls, CultureInfo culture)
+        {
+            foreach (Control ctrl in ctrls.Controls) {
+                if (ctrl is Button btn) btn.Text = Language.ResourceManager.GetString(btn.Name.Replace("Btn", "TXT_"), culture);
+                else if (ctrl is Label label) label.Text = Language.ResourceManager.GetString(label.Name.Replace("Lb", "TXT_"), culture);
+                else if (ctrl is FileListControl filelist) {
+                    filelist.ListName = Language.ResourceManager.GetString($"TXT_{filelist.Name}", culture);
+                    filelist.ApplyLanguage();
+                } else if (ctrl is GroupBox gb) {
+                    gb.Text = Language.ResourceManager.GetString(gb.Name.Replace("Gb", "TXT_"), culture);
+                    ApplyControlCulture(gb, culture);
+                } else if (ctrl is RadioButton rdb) rdb.Text = Language.ResourceManager.GetString(rdb.Name.Replace("Rdb", "TXT_"), culture);
+                else ApplyControlCulture(ctrl, culture);
+            }
         }
 
         private void BtnFolderOpen_Click(object sender, EventArgs e)
@@ -139,6 +149,8 @@ namespace EasyNamer
 
             settingForm.settingChanged += SettingChanged;
 
+            ApplyControlCulture(settingForm, Language.Culture);
+
             Point mainFormCenter = new Point(Location.X + Width / 2, Location.Y + Height / 2);
             settingForm.Location = new Point(mainFormCenter.X - settingForm.Width / 2, mainFormCenter.Y - settingForm.Height / 2);
             settingForm.ShowDialog();
@@ -147,19 +159,15 @@ namespace EasyNamer
         private void SettingChanged(object sender, EventArgs e)
         {
             Language.Culture = UpdateCulture();
-            languageChanged.Invoke(null, EventArgs.Empty);
+            languageChanged.Invoke(this, EventArgs.Empty);
         }
 
         private CultureInfo UpdateCulture()
         {
             CultureInfo lang = CultureInfo.CurrentUICulture;
-            switch (Settings.Default.Language) {
-                case "한국어": lang = new CultureInfo("ko-KR"); break;
-                case "日本語": lang = new CultureInfo("ja-JP"); break;
-                case "English": lang = new CultureInfo("en-US"); break;
-                case "Auto":
-                default: lang = CultureInfo.CurrentUICulture; break;
-            }
+            string LanguageCode = Settings.Default.Language;
+            if (LanguageCode == "Auto") lang = CultureInfo.CurrentUICulture;
+            else lang = new CultureInfo(LanguageCode);
             return lang;
         }
 
