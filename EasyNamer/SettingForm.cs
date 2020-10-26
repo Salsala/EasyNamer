@@ -20,7 +20,6 @@ namespace EasyNamer
         {
             InitializeComponent();
             cb_Language.Items[0] = Language.TXT_Auto;
-            LbVersion.Text = "Build Ver." + Assembly.GetExecutingAssembly().GetName().Version.ToString();
             SettingLoad();
         }
 
@@ -92,6 +91,11 @@ namespace EasyNamer
                 TbDefaultPath.Enabled = true;
                 BtnFind.Enabled = true;
             }
+        }
+
+        private void SettingForm_Shown(object sender, EventArgs e)
+        {
+            LbVersion.Text = "Build Ver." + Assembly.GetExecutingAssembly().GetName().Version.ToString();
         }
     }
 }
