@@ -15,13 +15,10 @@ namespace EasyNamer
 {
     public partial class FileListControl : UserControl
     {
-        public List<FileInformation> FileList = new List<FileInformation>();
-
         private readonly ListViewItem emptyItem_ = new ListViewItem(new string[] { "", "", "", "" });
         public string ListName { get => label1.Text; set => label1.Text = value; }
         public FileType fileType;
-        private Sorted sorted_;
-        public Sorted sorted { get => sorted_; set => HeaderTextUpdate(value); }
+        public SortOrder sorted { get => fileNameListView.Sorting; set => HeaderTextUpdate(value); }
         private string chFN;
 
         public void ApplyLanguage()
@@ -33,17 +30,17 @@ namespace EasyNamer
 
         }
 
-        public void HeaderTextUpdate(Sorted value)
+        public void HeaderTextUpdate(SortOrder value)
         {
-            sorted_ = value;
+            fileNameListView.Sorting = value;
             switch (sorted) {
-                case Sorted.none:
+                case SortOrder.None:
                     columnHeaderFileName.Text = chFN;
                     break;
-                case Sorted.Ascending:
+                case SortOrder.Ascending:
                     columnHeaderFileName.Text = $"{chFN}∧";
                     break;
-                case Sorted.Descending:
+                case SortOrder.Descending:
                     columnHeaderFileName.Text = $"{chFN}∨";
                     break;
             }
@@ -54,21 +51,12 @@ namespace EasyNamer
         {
             InitializeComponent();
             chFN = "파일명";
-            sorted = Sorted.none;
+            sorted = SortOrder.None;
         }
-
-        public void ListRefresh()
-        {
-            fileNameListView.Items.Clear();
-
-            foreach (var item in FileList) {
-                fileNameListView.Items.Add(new ListViewItem(new string[] { item.FileName, item.Extension, item.Directory }));
-            }
-        }
-
+        
         private void BtbIndexChange_Click(object sender, EventArgs e)
         {
-            if (FileList.Count == 0) return;
+            if (fileNameListView.Items.Count == 0) return;
 
             var obj = (Button)sender;
             switch (obj.Name) {
@@ -92,7 +80,7 @@ namespace EasyNamer
             }
 
             fileNameListView.Focus();
-            sorted = Sorted.none;
+            sorted = SortOrder.None;
 
             bool SelectedRowsCount()
             {
@@ -106,10 +94,9 @@ namespace EasyNamer
             int SelectedRow = fileNameListView.SelectedItems[0].Index;
             if (SelectedRow == 0) return;
 
-            FileInformation tmp = FileList[SelectedRow];
-            FileList.RemoveAt(SelectedRow);
-            FileList.Insert(SelectedRow - 1, tmp);
-            ListRefresh();
+            ListViewItem tmp = fileNameListView.Items[SelectedRow];
+            fileNameListView.Items.RemoveAt(SelectedRow);
+            fileNameListView.Items.Insert(SelectedRow - 1, tmp);
             fileNameListView.Items[SelectedRow - 1].Focused = true;
             fileNameListView.Items[SelectedRow - 1].Selected = true;
         }
@@ -117,12 +104,11 @@ namespace EasyNamer
         private void BtnDown_Click()
         {
             int SelectedRow = fileNameListView.SelectedItems[0].Index;
-            if (SelectedRow == FileList.Count - 1) return;
+            if (SelectedRow == fileNameListView.Items.Count - 1) return;
 
-            FileInformation tmp = FileList[SelectedRow];
-            FileList.RemoveAt(SelectedRow);
-            FileList.Insert(SelectedRow + 1, tmp);
-            ListRefresh();
+            ListViewItem tmp = fileNameListView.Items[SelectedRow];
+            fileNameListView.Items.RemoveAt(SelectedRow);
+            fileNameListView.Items.Insert(SelectedRow + 1, tmp);
             fileNameListView.Items[SelectedRow + 1].Focused = true;
             fileNameListView.Items[SelectedRow + 1].Selected = true;
         }
@@ -131,10 +117,9 @@ namespace EasyNamer
         {
             int SelectedRow = fileNameListView.SelectedItems[0].Index;
 
-            FileInformation tmp = FileList[SelectedRow];
-            FileList.RemoveAt(SelectedRow);
-            FileList.Insert(0, tmp);
-            ListRefresh();
+            ListViewItem tmp = fileNameListView.Items[SelectedRow];
+            fileNameListView.Items.RemoveAt(SelectedRow);
+            fileNameListView.Items.Insert(0, tmp);
             fileNameListView.Items[0].Focused = true;
             fileNameListView.Items[0].Selected = true;
         }
@@ -143,48 +128,27 @@ namespace EasyNamer
         {
             int SelectedRow = fileNameListView.SelectedItems[0].Index;
 
-            FileInformation tmp = FileList[SelectedRow];
-            FileList.RemoveAt(SelectedRow);
-            FileList.Insert(FileList.Count, tmp);
-            ListRefresh();
-            fileNameListView.Items[FileList.Count - 1].Focused = true;
-            fileNameListView.Items[FileList.Count - 1].Selected = true;
+            ListViewItem tmp = fileNameListView.Items[SelectedRow];
+            fileNameListView.Items.RemoveAt(SelectedRow);
+            fileNameListView.Items.Insert(fileNameListView.Items.Count, tmp);
+            fileNameListView.Items[fileNameListView.Items.Count - 1].Focused = true;
+            fileNameListView.Items[fileNameListView.Items.Count - 1].Selected = true;
         }
 
         private void BtnDelete_Click()
         {
-
-            List<int> indexes = new List<int>();
-            foreach (ListViewItem item in fileNameListView.SelectedItems) {
-                indexes.Add(item.Index);
-                indexes.Reverse();
-            }
-
-            foreach (int index in indexes) {
-                FileList.RemoveAt(index);
-            }
-
-            ListRefresh();
+            foreach (ListViewItem item in fileNameListView.SelectedItems)
+                fileNameListView.Items.Remove(item);
         }
 
         public void FileNameLoad(DirectoryInfo directoryInfo)
         {
-            FileList.Clear();
+            fileNameListView.Items.Clear();
 
             foreach (var item in directoryInfo.GetFiles()) {
-                string extension = item.Extension;
-                string filename = Path.GetFileNameWithoutExtension(item.FullName);
-                string fullname = item.FullName;
-
-                foreach (var tmp in fileType.ExtensionList) {
-                    if (extension.Equals(tmp, StringComparison.OrdinalIgnoreCase)) {
-                        FileList.Add(new FileInformation(filename, extension.ToLower(), fullname));
-                    }
-                }
+                openFile(item.FullName);
             }
-
-            sorted = Sorted.none;
-            ListRefresh();
+            sorted = SortOrder.None;
         }
 
         private void BtnAdd_Click(object sender, EventArgs e)
@@ -196,57 +160,46 @@ namespace EasyNamer
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
             foreach (var item in openFileDialog1.FileNames) {
-                string extension = Path.GetExtension(item);
-                string filename = Path.GetFileNameWithoutExtension(item);
-                string fullname = item;
-
-                FileInformation file = new FileInformation(filename, extension.ToLower(), fullname);
-
-                int equalCount = 0;
-                foreach (var tmp in FileList) {
-                    if (tmp.Directory == file.Directory)
-                        equalCount++;
-                }
-                if (equalCount == 0) FileList.Add(file);
+                openFile(item);
             }
 
-            sorted = Sorted.none;
+            sorted = SortOrder.None;
+        }
 
-            ListRefresh();
+        private void openFile(string file)
+        {
+            string extension = Path.GetExtension(file).ToLower();
+            string filename = Path.GetFileNameWithoutExtension(file);
+            string fullname = file;
+
+            ListViewItem newItem = new ListViewItem(new string[] { filename, extension, fullname });
+
+            int equalCount = 0;
+            foreach (ListViewItem tmp in fileNameListView.Items) {
+                if (tmp.SubItems[2].Text == newItem.SubItems[2].Text)
+                    equalCount++;
+            }
+            if (equalCount == 0)
+                foreach (var tmp in fileType.ExtensionList) {
+                    if (extension.Equals(tmp, StringComparison.OrdinalIgnoreCase)) {
+                        fileNameListView.Items.Add(newItem);
+                    }
+                }
         }
 
         private void fileNameListView_ColumnClick(object sender, ColumnClickEventArgs e)
         {
-            List<FileInformation> tmpList = new List<FileInformation>();
-
-            foreach (var item in FileList) {
-                tmpList.Add(item);
-            }
-
-            tmpList.Sort((FileInformation x, FileInformation y) => x.FileName.CompareTo(y.FileName));
             switch (sorted) {
-                case Sorted.Ascending: tmpList.Reverse(); sorted = Sorted.Descending; break;
-                case Sorted.Descending:
-                case Sorted.none: sorted = Sorted.Ascending; break;
+                case SortOrder.Ascending: sorted = SortOrder.Descending; break;
+                case SortOrder.Descending:
+                case SortOrder.None: sorted = SortOrder.Ascending; break;
             }
-
-            FileList.Clear();
-            fileNameListView.Items.Clear();
-
-            foreach (var item in tmpList) FileList.Add(item);
-
-            ListRefresh();
-        }
-
-        public void RemoveItem(FileInformation item)
-        {
-            FileList.Remove(item);
         }
 
         private void fileNameListView_DoubleClick(object sender, EventArgs e)
         {
-            int index = fileNameListView.SelectedItems[0].Index;
-            Process.Start(FileList[index].Directory);
+            var item = fileNameListView.SelectedItems[0];
+            Process.Start(item.SubItems[2].Text);
         }
 
         private void fileNameListView_DragEnter(object sender, DragEventArgs e)
@@ -259,22 +212,10 @@ namespace EasyNamer
             string[] itmes = (string[])e.Data.GetData(DataFormats.FileDrop);
 
             foreach (string item in itmes) {
-                string extension = Path.GetExtension(item);
-                if (!fileType.ExtensionList.Contains(extension)) continue;
-
-                string filename = Path.GetFileNameWithoutExtension(item);
-                string fullname = item;
-                FileInformation file = new FileInformation(filename, extension.ToLower(), fullname);
-                int equalCount = 0;
-                foreach (var tmp in FileList) {
-                    if (tmp.Directory == file.Directory)
-                        equalCount++;
-                }
-                if (equalCount == 0) FileList.Add(file);
+                openFile(item);
             }
 
-            sorted = Sorted.none;
-            ListRefresh();
+            sorted = SortOrder.None;
         }
     }
 }

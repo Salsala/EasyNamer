@@ -12,7 +12,6 @@ namespace EasyNamer
     public partial class MainForm : Form
     {
         string filePath;
-        DirectoryInfo directoryInfo;
         bool isFirstLoad = true;
         List<string> Messages = new List<string>();
 
@@ -80,20 +79,17 @@ namespace EasyNamer
 
         private void FileNameLoad(string filePath)
         {
-            directoryInfo = new DirectoryInfo(filePath);
+            DirectoryInfo directoryInfo = new DirectoryInfo(filePath);
 
-            List<FileInformation> videoDeleteList = new List<FileInformation>();
-            List<FileInformation> subtitleDeletList = new List<FileInformation>();
-            try {
-                VideoList.FileNameLoad(directoryInfo);
-                SubtitleList.FileNameLoad(directoryInfo);
-            } catch {
-                MessageBox.Show(Messages[1]);
-                return;
-            }
-            foreach (var videoname in VideoList.FileList) {
-                foreach (var subtitlename in SubtitleList.FileList) {
-                    if (videoname.FileName == subtitlename.FileName) {
+            List<ListViewItem> videoDeleteList = new List<ListViewItem>();
+            List<ListViewItem> subtitleDeletList = new List<ListViewItem>();
+
+            VideoList.FileNameLoad(directoryInfo);
+            SubtitleList.FileNameLoad(directoryInfo);
+
+            foreach (ListViewItem videoname in VideoList.fileNameListView.Items) {
+                foreach (ListViewItem subtitlename in SubtitleList.fileNameListView.Items) {
+                    if (videoname.ToString() == subtitlename.ToString()) {
                         videoDeleteList.Add(videoname);
                         subtitleDeletList.Add(subtitlename);
                     }
@@ -101,20 +97,17 @@ namespace EasyNamer
             }
 
             foreach (var item in videoDeleteList) {
-                VideoList.FileList.Remove(item);
+                VideoList.fileNameListView.Items.Remove(item);
             }
             foreach (var item in subtitleDeletList) {
-                SubtitleList.FileList.Remove(item);
+                SubtitleList.fileNameListView.Items.Remove(item);
             }
-
-            VideoList.ListRefresh();
-            SubtitleList.ListRefresh();
         }
 
         private void BtnRename_Click(object sender, EventArgs e)
         {
-            int videoListCount = VideoList.FileList.Count;
-            int subtitleListCount = SubtitleList.FileList.Count;
+            int videoListCount = VideoList.fileNameListView.Items.Count;
+            int subtitleListCount = SubtitleList.fileNameListView.Items.Count;
             List<string[]> fileList = new List<string[]>();
 
             if (videoListCount != subtitleListCount) {
@@ -122,22 +115,20 @@ namespace EasyNamer
                 return;
             } else {
                 for (int i = 0; i < videoListCount; i++) {
-                    FileInformation video = VideoList.FileList[i];
-                    FileInformation subtitle = SubtitleList.FileList[i];
-                    filePath = new FileInfo(video.Directory).DirectoryName;
+                    ListViewItem video = VideoList.fileNameListView.Items[i];
+                    ListViewItem subtitle = SubtitleList.fileNameListView.Items[i];
+                    filePath = new FileInfo(video.SubItems[2].Text).DirectoryName;
                     TbFilePath.Text = TbFilePath.Text != filePath ? filePath : TbFilePath.Text;
-                    string newfullname = $@"{filePath ?? new FileInfo(subtitle.Directory).DirectoryName}\{video.FileName}{subtitle.Extension}";
-                    fileList.Add(new string[] { subtitle.Directory, newfullname });
-                    subtitle.FileName = video.FileName;
-                    subtitle.Directory = newfullname;
+                    string newfullname = $@"{filePath ?? new FileInfo(subtitle.SubItems[2].Text).DirectoryName}\{video.Text}{subtitle.SubItems[1].Text}";
+                    fileList.Add(new string[] { subtitle.SubItems[2].Text, newfullname });
+                    subtitle.Text = video.Text;
+                    subtitle.SubItems[2].Text = newfullname;
                 }
 
                 foreach (var item in fileList) {
                     FileInfo file = new FileInfo(item[0]);
                     file.MoveTo(item[1]);
                 }
-
-                SubtitleList.ListRefresh();
 
                 MessageBox.Show(Messages[0]);
             }
@@ -171,17 +162,29 @@ namespace EasyNamer
             return lang;
         }
 
-
         private void TbFilePath_KeyPress(object sender, KeyPressEventArgs e)
         {
             TextBox tb = (TextBox)sender;
             if (e.KeyChar == (char)Keys.Enter) {
-                filePath = tb.Text;
+                string tmp = filePath;
+                try {
+                    if (tb.Text.Substring(1, 2) == @":\")
+                        tb.Text = tb.Text.Replace(tb.Text.Substring(0, 2), tb.Text.Substring(0, 2).ToUpper());
+                    filePath = tb.Text;
+                    
+                    FileNameLoad(filePath);
+                    VideoList.Focus();
+                } catch {
+                    MessageBox.Show(Messages[1]);
+                    filePath = tmp;
+                    tb.SelectAll();
+                }
+
                 if (Settings.Default.isRecentPath) {
                     Settings.Default.defaultPath = filePath;
                     Settings.Default.Save();
                 }
-                FileNameLoad(filePath);
+
             }
         }
     }

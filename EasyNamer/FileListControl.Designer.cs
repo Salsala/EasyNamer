@@ -27,7 +27,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.columnHeaderFileName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderExtension = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderDirectory = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -42,10 +41,8 @@
             this.BtnBottom = new System.Windows.Forms.Button();
             this.fileNameListView = new System.Windows.Forms.ListView();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.fileInformationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.fileInformationBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // columnHeaderFileName
@@ -236,10 +233,6 @@
             this.openFileDialog1.Multiselect = true;
             this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
-            // fileInformationBindingSource
-            // 
-            this.fileInformationBindingSource.DataSource = typeof(EasyNamer.FileInformation);
-            // 
             // FileListControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -251,7 +244,6 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.fileInformationBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -259,7 +251,6 @@
         #endregion
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.BindingSource fileInformationBindingSource;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Button BtnAdd;
         private System.Windows.Forms.Button BtnDelete;
@@ -271,6 +262,6 @@
         private System.Windows.Forms.ColumnHeader columnHeaderFileName;
         private System.Windows.Forms.ColumnHeader columnHeaderExtension;
         private System.Windows.Forms.ColumnHeader columnHeaderDirectory;
-        private System.Windows.Forms.ListView fileNameListView;
+        protected internal System.Windows.Forms.ListView fileNameListView;
     }
 }
