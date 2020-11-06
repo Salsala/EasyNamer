@@ -129,6 +129,7 @@
             this.TbDefaultPath.Name = "TbDefaultPath";
             this.TbDefaultPath.Size = new System.Drawing.Size(361, 25);
             this.TbDefaultPath.TabIndex = 2;
+            this.TbDefaultPath.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TbDefaultPath_MouseUp);
             // 
             // BtnFind
             // 

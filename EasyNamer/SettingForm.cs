@@ -97,5 +97,10 @@ namespace EasyNamer
         {
             LbVersion.Text = "Build Ver." + Assembly.GetExecutingAssembly().GetName().Version.ToString();
         }
+
+        private void TbDefaultPath_MouseUp(object sender, MouseEventArgs e)
+        {
+            Program.TripleClick(TbDefaultPath);
+        }
     }
 }

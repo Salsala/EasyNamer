@@ -192,24 +192,9 @@ namespace EasyNamer
             }
         }
 
-        private int clickCount = 0;
-        private Timer timer = new Timer();
-
         private void TbFilePath_MouseUp(object sender, MouseEventArgs e)
         {
-            timer.Stop();
-            clickCount++;
-            if (clickCount == 3) {
-                TbFilePath.SelectAll();
-                clickCount = 0;
-            }else if (clickCount < 3) {
-                timer.Interval = 300;
-                timer.Start();
-                timer.Tick += (s, t) => {
-                    timer.Stop();
-                    clickCount = 0;
-                };
-            }
+            Program.TripleClick(TbFilePath);
         }
     }
 }

@@ -15,5 +15,25 @@ namespace EasyNamer
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());
         }
+
+        static int clickCount = 0;
+        static Timer timer = new Timer();
+
+        static public void TripleClick(TextBox tb)
+        {
+            timer.Stop();
+            clickCount++;
+            if (clickCount == 3) {
+                tb.SelectAll();
+                clickCount = 0;
+            } else if (clickCount < 3) {
+                timer.Interval = 300;
+                timer.Start();
+                timer.Tick += (s, t) => {
+                    timer.Stop();
+                    clickCount = 0;
+                };
+            }
+        }
     }
 }
