@@ -152,6 +152,9 @@
     <value>動画と字幕の数が異なります。
 動画リストと字幕リストを確認してください。</value>
   </data>
+  <data name="TXT_Message4" xml:space="preserve">
+    <value>動画リストと字幕リストは空です。</value>
+  </data>
   <data name="TXT_OK" xml:space="preserve">
     <value>OK</value>
   </data>

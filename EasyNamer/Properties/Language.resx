@@ -152,6 +152,9 @@ Please check the path again.</value>
     <value>The number of videos and subtitles is different.
 Check the video list and subtitle list.</value>
   </data>
+  <data name="TXT_Message4" xml:space="preserve">
+    <value>The Video List and Subtitle List are empty.</value>
+  </data>
   <data name="TXT_OK" xml:space="preserve">
     <value>OK</value>
   </data>

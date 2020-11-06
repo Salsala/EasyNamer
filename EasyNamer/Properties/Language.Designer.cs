@@ -162,6 +162,15 @@ namespace EasyNamer.Properties {
         }
         
         /// <summary>
+        ///   The Video List and Subtitle List are empty.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string TXT_Message4 {
+            get {
+                return ResourceManager.GetString("TXT_Message4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   OK과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string TXT_OK {

@@ -32,6 +32,8 @@ namespace EasyNamer
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.VideoList = new EasyNamer.FileListControl();
+            this.SubtitleList = new EasyNamer.FileListControl();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.BtnFileLoad = new System.Windows.Forms.Button();
             this.BtnRename = new System.Windows.Forms.Button();
@@ -39,8 +41,6 @@ namespace EasyNamer
             this.TbFilePath = new System.Windows.Forms.TextBox();
             this.BtnSetting = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.VideoList = new EasyNamer.FileListControl();
-            this.SubtitleList = new EasyNamer.FileListControl();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -67,6 +67,30 @@ namespace EasyNamer
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(884, 511);
             this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // VideoList
+            // 
+            this.VideoList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.VideoList.ListName = "동영상 리스트";
+            this.VideoList.Location = new System.Drawing.Point(18, 56);
+            this.VideoList.Margin = new System.Windows.Forms.Padding(0);
+            this.VideoList.Name = "VideoList";
+            this.VideoList.Size = new System.Drawing.Size(419, 439);
+            this.VideoList.sorted = System.Windows.Forms.SortOrder.None;
+            this.VideoList.TabIndex = 3;
+            this.VideoList.TabStop = false;
+            // 
+            // SubtitleList
+            // 
+            this.SubtitleList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SubtitleList.ListName = "자막 리스트";
+            this.SubtitleList.Location = new System.Drawing.Point(446, 56);
+            this.SubtitleList.Margin = new System.Windows.Forms.Padding(0);
+            this.SubtitleList.Name = "SubtitleList";
+            this.SubtitleList.Size = new System.Drawing.Size(419, 439);
+            this.SubtitleList.sorted = System.Windows.Forms.SortOrder.None;
+            this.SubtitleList.TabIndex = 4;
+            this.SubtitleList.TabStop = false;
             // 
             // tableLayoutPanel2
             // 
@@ -147,6 +171,7 @@ namespace EasyNamer
             this.TbFilePath.TabIndex = 7;
             this.TbFilePath.TabStop = false;
             this.TbFilePath.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TbFilePath_KeyPress);
+            this.TbFilePath.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TbFilePath_MouseUp);
             // 
             // BtnSetting
             // 
@@ -169,30 +194,6 @@ namespace EasyNamer
             // 
             this.folderBrowserDialog1.SelectedPath = "D:\\비전팀\\상진\\새 폴더 (2)";
             this.folderBrowserDialog1.ShowNewFolderButton = false;
-            // 
-            // VideoList
-            // 
-            this.VideoList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.VideoList.ListName = "동영상 리스트";
-            this.VideoList.Location = new System.Drawing.Point(18, 56);
-            this.VideoList.Margin = new System.Windows.Forms.Padding(0);
-            this.VideoList.Name = "VideoList";
-            this.VideoList.Size = new System.Drawing.Size(419, 439);
-            this.VideoList.sorted = System.Windows.Forms.SortOrder.None;
-            this.VideoList.TabIndex = 3;
-            this.VideoList.TabStop = false;
-            // 
-            // SubtitleList
-            // 
-            this.SubtitleList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SubtitleList.ListName = "자막 리스트";
-            this.SubtitleList.Location = new System.Drawing.Point(446, 56);
-            this.SubtitleList.Margin = new System.Windows.Forms.Padding(0);
-            this.SubtitleList.Name = "SubtitleList";
-            this.SubtitleList.Size = new System.Drawing.Size(419, 439);
-            this.SubtitleList.sorted = System.Windows.Forms.SortOrder.None;
-            this.SubtitleList.TabIndex = 4;
-            this.SubtitleList.TabStop = false;
             // 
             // MainForm
             // 

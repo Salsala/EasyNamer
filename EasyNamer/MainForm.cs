@@ -37,7 +37,7 @@ namespace EasyNamer
         {
             ApplyControlCulture((Control)sender, Language.Culture);
             Messages.Clear();
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < 4; i++) {
                 Messages.Add(Language.ResourceManager.GetString($"TXT_Message{i + 1}", Language.Culture));
             }
         }
@@ -113,6 +113,9 @@ namespace EasyNamer
             if (videoListCount != subtitleListCount) {
                 MessageBox.Show(Messages[2]);
                 return;
+            } else if (videoListCount == 0 && subtitleListCount == 0) {
+                MessageBox.Show(Messages[3]);
+                return;
             } else {
                 for (int i = 0; i < videoListCount; i++) {
                     ListViewItem video = VideoList.fileNameListView.Items[i];
@@ -171,9 +174,10 @@ namespace EasyNamer
                     if (tb.Text.Substring(1, 2) == @":\")
                         tb.Text = tb.Text.Replace(tb.Text.Substring(0, 2), tb.Text.Substring(0, 2).ToUpper());
                     filePath = tb.Text;
-                    
+
                     FileNameLoad(filePath);
-                    VideoList.Focus();
+                    ActiveControl=null;
+                    e.Handled = true;
                 } catch {
                     MessageBox.Show(Messages[1]);
                     filePath = tmp;
@@ -185,6 +189,26 @@ namespace EasyNamer
                     Settings.Default.Save();
                 }
 
+            }
+        }
+
+        private int clickCount = 0;
+        private Timer timer = new Timer();
+
+        private void TbFilePath_MouseUp(object sender, MouseEventArgs e)
+        {
+            timer.Stop();
+            clickCount++;
+            if (clickCount == 3) {
+                TbFilePath.SelectAll();
+                clickCount = 0;
+            }else if (clickCount < 3) {
+                timer.Interval = 300;
+                timer.Start();
+                timer.Tick += (s, t) => {
+                    timer.Stop();
+                    clickCount = 0;
+                };
             }
         }
     }
