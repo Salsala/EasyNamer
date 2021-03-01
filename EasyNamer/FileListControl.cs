@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
@@ -198,8 +192,14 @@ namespace EasyNamer
 
         private void fileNameListView_DoubleClick(object sender, EventArgs e)
         {
-            var item = fileNameListView.SelectedItems[0];
-            Process.Start(item.SubItems[2].Text);
+            var file = fileNameListView.SelectedItems[0].SubItems[2].Text;
+
+            if(File.Exists(file))
+                Process.Start(file);
+            else {
+                MessageBox.Show(Program.Messages[4]);
+                return;
+            }
         }
 
         private void fileNameListView_DragEnter(object sender, DragEventArgs e)

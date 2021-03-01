@@ -155,6 +155,10 @@
   <data name="TXT_Message4" xml:space="preserve">
     <value>動画リストと字幕リストは空です。</value>
   </data>
+  <data name="TXT_Message5" xml:space="preserve">
+    <value>このファイルは存在しません。
+パスをもう一度確認してください。</value>
+  </data>
   <data name="TXT_OK" xml:space="preserve">
     <value>OK</value>
   </data>

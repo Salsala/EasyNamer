@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Collections.Generic;
 
 namespace EasyNamer
 {
@@ -18,6 +19,7 @@ namespace EasyNamer
 
         static int clickCount = 0;
         static Timer timer = new Timer();
+        static public List<string> Messages = new List<string>();
 
         static public void TripleClick(TextBox tb)
         {

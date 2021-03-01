@@ -13,7 +13,6 @@ namespace EasyNamer
     {
         string filePath;
         bool isFirstLoad = true;
-        List<string> Messages = new List<string>();
 
         EventHandler languageChanged;
 
@@ -27,7 +26,8 @@ namespace EasyNamer
 
             VideoList.fileType = new FileType(FileTypes.Video);
             SubtitleList.fileType = new FileType(FileTypes.Subtitle);
-            filePath = TbFilePath.Text = Settings.Default.defaultPath;
+            filePath = TbFilePath.Text = Directory.Exists(Settings.Default.defaultPath)?Settings.Default.defaultPath:@"C:\";
+
             string[] Version = Assembly.GetExecutingAssembly().GetName().Version.ToString().Split('.');
             this.Text = this.Text + " Ver." + Version[0] + "." + Version[1] + "." + Version[2];
             FileNameLoad(filePath);
@@ -36,9 +36,9 @@ namespace EasyNamer
         private void LanguageChanged(object sender, EventArgs e)
         {
             ApplyControlCulture((Control)sender, Language.Culture);
-            Messages.Clear();
-            for (int i = 0; i < 4; i++) {
-                Messages.Add(Language.ResourceManager.GetString($"TXT_Message{i + 1}", Language.Culture));
+            Program.Messages.Clear();
+            for (int i = 0; i < 5; i++) {
+                Program.Messages.Add(Language.ResourceManager.GetString($"TXT_Message{i + 1}", Language.Culture));
             }
         }
 
@@ -111,10 +111,10 @@ namespace EasyNamer
             List<string[]> fileList = new List<string[]>();
 
             if (videoListCount != subtitleListCount) {
-                MessageBox.Show(Messages[2]);
+                MessageBox.Show(Program.Messages[2]);
                 return;
             } else if (videoListCount == 0 && subtitleListCount == 0) {
-                MessageBox.Show(Messages[3]);
+                MessageBox.Show(Program.Messages[3]);
                 return;
             } else {
                 for (int i = 0; i < videoListCount; i++) {
@@ -133,7 +133,7 @@ namespace EasyNamer
                     file.MoveTo(item[1]);
                 }
 
-                MessageBox.Show(Messages[0]);
+                MessageBox.Show(Program.Messages[0]);
             }
         }
 
@@ -179,7 +179,7 @@ namespace EasyNamer
                     ActiveControl=null;
                     e.Handled = true;
                 } catch {
-                    MessageBox.Show(Messages[1]);
+                    MessageBox.Show(Program.Messages[1]);
                     filePath = tmp;
                     tb.SelectAll();
                 }
